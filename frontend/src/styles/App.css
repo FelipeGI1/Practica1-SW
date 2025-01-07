@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 body {
   background-image: url('../assets/font_home.svg');
   background-size: cover;
@@ -7,3 +9,21 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.title {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin-right: 20px;
+  font-size: 4em;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-align: right;
+}
+
+.title span {
+  display: block;
+}
+
