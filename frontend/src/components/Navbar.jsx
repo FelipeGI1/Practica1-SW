@@ -10,9 +10,9 @@ const NavBar = ({ onToggleMenu }) => {
                 <FaBars />
             </button>
             <ul className="navbar-list">
-                <li className="navbar-item"><a href="#home">Home</a></li>
-                <li className="navbar-item"><a href="#about">About</a></li>
-            </ul>
+                <li className="navbar-item"><NavLink to="/">Home</NavLink></li>
+                <li className="navbar-item"><NavLink to="/about">About</NavLink></li>
+            </ul>btn
         </nav>
     );
 }

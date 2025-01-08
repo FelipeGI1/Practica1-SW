@@ -1,12 +1,12 @@
 import React from 'react';
-import '../styles/App.css';
+import '../styles/home.css';
 import NavBar from '../components/Navbar';
 
-function App() {
+const Home = () => {
     return (
-        <div className="App">
+        <div className="home-page">
             <NavBar />
-            <h1 className="title">
+            <h1 className="home-title">
               <span>Reconocimiento de</span>
               <span>Veredas con <span className="highlight">DeepLearning</span></span>
             </h1>
@@ -15,4 +15,4 @@ function App() {
     );
 }
 
-export default App;
+export default Home;

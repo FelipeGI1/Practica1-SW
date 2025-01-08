@@ -18,6 +18,17 @@
     font-size: 1.5em;
     cursor: pointer;
     padding: 14px 0;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.hamburger-btn:hover {
+    color: #511818;
+}
+
+.hamburger-btn:focus {
+    outline: none;
 }
 
 .navbar-list {
@@ -37,6 +48,7 @@
     text-align: center;
     text-decoration: none;
     display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar-item a:hover {

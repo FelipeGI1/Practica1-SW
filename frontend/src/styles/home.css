@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-body {
+html, body, #root {
+  height: 100%; /* Esto asegura que los contenedores padres permitan crecer a los hijos */
+  width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
+  margin: 0; /* Quita márgenes por defecto */
+}
+
+.home-page {
   background-image: url('../assets/font_home.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
-  margin: 0;
-  padding: 0;
+  width: 100%;
 }
 
-.title {
+.home-title {
   position: absolute;
   top: 50%;
   right: 0;
@@ -23,7 +28,7 @@ body {
   text-align: right;
 }
 
-.title span {
+.home-title span {
   display: block;
 }
 
