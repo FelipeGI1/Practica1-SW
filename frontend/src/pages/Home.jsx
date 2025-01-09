@@ -5,7 +5,6 @@ import NavBar from '../components/Navbar';
 const Home = () => {
     return (
         <div className="home-page">
-            <NavBar />
             <h1 className="home-title">
               <span>Reconocimiento de</span>
               <span>Veredas con <span className="highlight">DeepLearning</span></span>
