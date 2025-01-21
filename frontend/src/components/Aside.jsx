@@ -6,13 +6,7 @@ const Aside = ({ menuOpen }) => {
         <aside className={`aside-container ${menuOpen ? 'aside-open' : 'aside-closed'}`}>
             <nav className="aside-nav">
                 <ul>
-                    <li><NavLink to="/upload">Subir Archivos</NavLink></li>
-                </ul>
-                <ul>
-                    <li><NavLink to="/predict-images">Predicción Imagenes</NavLink></li>
-                </ul>
-                <ul>
-                    <li><NavLink to="/predict-videos">Predicción Videos</NavLink></li>
+                    <li><NavLink to="/upload">Registro Datos</NavLink></li>
                 </ul>
                 <ul>
                     <li><NavLink to="/monitoring">Monitoreo</NavLink></li>

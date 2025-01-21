@@ -5,8 +5,6 @@ import Home from './pages/home.jsx';
 import About from './pages/About.jsx';
 import Layout from './components/Layout.jsx';
 import Upload from './pages/Upload.jsx';
-import PredictImages from './pages/PredictImages.jsx';
-import PredictVideos from './pages/PredictVideos.jsx';
 import Monitoring from './pages/Monitoring.jsx';
 
 const router = createBrowserRouter([
@@ -25,14 +23,6 @@ const router = createBrowserRouter([
       {
         path: '/upload',
         element: <Upload />,
-      },
-      {
-        path: '/predict-images',
-        element: <PredictImages />,
-      },
-      {
-        path: '/predict-videos',
-        element: <PredictVideos />,
       },
       {
         path: '/monitoring',
