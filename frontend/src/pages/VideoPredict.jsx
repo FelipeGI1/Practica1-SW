@@ -2,9 +2,9 @@ import React from "react";
 
 const VideoPredict = () => {
     return (
-        <div className="monitoring-page">
-            <h1>Monitoring Page</h1>
-            <p>This is the monitoring page.</p>
+        <div className="videos-page">
+            <h1>Pagina de videos</h1>
+            <p>En esta pagina se realizan predicciones de videos.</p>
         </div>
     );
 };

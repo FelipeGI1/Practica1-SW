@@ -11,6 +11,9 @@ const Aside = ({ menuOpen }) => {
                 <ul>
                     <li><NavLink to="/videos">Predecir Videos</NavLink></li>
                 </ul>
+                <ul>
+                    <li><NavLink to="/camara">Predicción Cámara</NavLink></li>
+                </ul>
             </nav>
         </aside>
     );

@@ -2,9 +2,9 @@ import React from "react";
 
 const ImagePredict = () => {
     return (
-        <div className="upload-page">
-            <h1>Upload Page</h1>
-            <p>This is the upload page.</p>
+        <div className="image-page">
+            <h1>Página de Imágenes</h1>
+            <p>En esta pagina se realizan predicciones de images.</p>
         </div>
     );
 };

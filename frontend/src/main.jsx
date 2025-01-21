@@ -6,6 +6,7 @@ import About from './pages/About.jsx';
 import Layout from './components/Layout.jsx';
 import ImagePredict from './pages/ImagePredict.jsx';
 import VideoPredict from './pages/VideoPredict.jsx';
+import CameraPredict from './pages/CameraPredict.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/videos',
         element: <VideoPredict />,
+      },
+      {
+        path: '/camara',
+        element: <CameraPredict />,
       },
     ],
     errorElement: <div>404 Not Found</div>,
