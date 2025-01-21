@@ -1,6 +1,6 @@
 import React from "react";
 
-const Upload = () => {
+const ImagePredict = () => {
     return (
         <div className="upload-page">
             <h1>Upload Page</h1>
@@ -9,4 +9,4 @@ const Upload = () => {
     );
 };
 
-export default Upload;
+export default ImagePredict;

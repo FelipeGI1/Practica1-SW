@@ -4,8 +4,8 @@ import './styles/index.css';
 import Home from './pages/home.jsx';
 import About from './pages/About.jsx';
 import Layout from './components/Layout.jsx';
-import Upload from './pages/Upload.jsx';
-import Monitoring from './pages/Monitoring.jsx';
+import ImagePredict from './pages/ImagePredict.jsx';
+import VideoPredict from './pages/VideoPredict.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,12 +21,12 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: '/upload',
-        element: <Upload />,
+        path: '/imagenes',
+        element: <ImagePredict />,
       },
       {
-        path: '/monitoring',
-        element: <Monitoring />,
+        path: '/videos',
+        element: <VideoPredict />,
       },
     ],
     errorElement: <div>404 Not Found</div>,

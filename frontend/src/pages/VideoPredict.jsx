@@ -1,6 +1,6 @@
 import React from "react";
 
-const Monitoring = () => {
+const VideoPredict = () => {
     return (
         <div className="monitoring-page">
             <h1>Monitoring Page</h1>
@@ -9,4 +9,4 @@ const Monitoring = () => {
     );
 };
 
-export default Monitoring;
+export default VideoPredict;

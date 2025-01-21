@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import '../styles/home.css';
-import NavBar from '../components/Navbar';
 
 const Home = () => {
     return (
