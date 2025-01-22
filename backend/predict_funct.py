@@ -23,3 +23,13 @@ def predict_video(video_path):
     model = YOLO("yolo11m-seg-custom.pt")
     results = model.predict(source=video_path, save=True, conf=0.8)
     
+    video_filename = os.path.splitext(os.path.basename(video_path))[0] + ".avi"
+    input_video_path = os.path.join(path_predict, video_filename)
+    output_video_path = os.path.join(path_predict, f"{os.path.splitext(video_filename)[0]}.mp4")
+    
+    # Convert the predicted video to .mp4
+    clip = VideoFileClip(input_video_path)
+    clip.write_videofile(output_video_path, codec='libx264')
+    
+    # Remove the old .avi file
+    os.remove(input_video_path)
