@@ -1,6 +1,7 @@
 import shutil
 import os
 from ultralytics import YOLO
+from moviepy.editor import VideoFileClip
 
 def predict_image(image_path):
     path_predict = "runs/segment/predict"
@@ -21,3 +22,4 @@ def predict_video(video_path):
 
     model = YOLO("yolo11m-seg-custom.pt")
     results = model.predict(source=video_path, save=True, conf=0.8)
+    

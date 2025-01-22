@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-from predict_funct import predict_image
+from predict_funct import predict_image, predict_video
 import os
 import shutil
 
@@ -41,6 +41,29 @@ def predict():
             'original_image': f'/uploads/{file.filename}',
             'predicted_image': f'/runs/segment/predict/{file.filename}'
         }), 200
+
+@app.route('/predict_video', methods=['POST'])
+def predict_video_route():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    if file:
+        clear_upload_folder()
+        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+        file.save(file_path)
+        predict_video(file_path)
+        predict_video_path = os.path.join("runs/segment/predict2", file.filename)
+        return jsonify({
+            'message': 'Prediction completed',
+            'original_video': f'/uploads/{file.filename}',
+            'predicted_video': f'/runs/segment/predict2/{file.filename}'
+        }), 200
+
+@app.route('/runs/segment/predict2/<filename>')
+def predicted_video_file(filename):
+    return send_from_directory("runs/segment/predict2", filename)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
