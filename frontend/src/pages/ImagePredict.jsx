@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import "../styles/imagepredict.css";
 
 const ImagePredict = () => {
+    const [originalImage, setOriginalImage] = useState(null);
+    const [predictedImage, setPredictedImage] = useState(null);
+
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -18,6 +22,8 @@ const ImagePredict = () => {
                     })
                     .then((res) => {
                         console.log("Respuesta del servidor:", res.data);
+                        setOriginalImage(`http://127.0.0.1:5000${res.data.original_image}`);
+                        setPredictedImage(`http://127.0.0.1:5000${res.data.predicted_image}`);
                         alert(res.data.message);
                     });
             } catch (error) {
@@ -28,8 +34,7 @@ const ImagePredict = () => {
 
     return (
         <div className="image-page">
-            <h1>Página de Imágenes</h1>
-            <button onClick={() => document.getElementById("file-input").click()}>
+            <button className="predict-button" onClick={() => document.getElementById("file-input").click()}>
                 Realizar predicciones
             </button>
             <input
@@ -39,6 +44,16 @@ const ImagePredict = () => {
                 accept=".png, .jpg, .jpeg"
                 onChange={handleFileChange}
             />
+            <div className="image-container">
+                <div className="image-box">
+                    <h2>Imagen original</h2>
+                    {originalImage && <img src={originalImage} alt="Imagen original" />}
+                </div>
+                <div className="image-box">
+                    <h2>Predicción</h2>
+                    {predictedImage && <img src={predictedImage} alt="Predicción" />}
+                </div>
+            </div>     
         </div>
     );
 };

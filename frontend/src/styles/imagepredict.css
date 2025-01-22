@@ -1,0 +1,48 @@
+.image-page {
+    margin-top: 52px; /* Altura de la navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    height: calc(100vh - 52px); /* Altura total menos la altura de la navbar */
+    padding: 20px; /* Añade un poco de padding para separar el botón del borde */
+}
+
+.predict-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* Añade un margen inferior para separar el botón de los cuadros de texto */
+}
+
+.predict-button:hover {
+    background-color: #555;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px; /* Añade un margen inferior para separar los cuadros de texto del botón */
+}
+
+.image-box {
+    flex: 1;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.image-box h2 {
+    margin-bottom: 10px;
+}
+
+.image-box img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
