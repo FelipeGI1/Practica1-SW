@@ -35,7 +35,7 @@ const ImagePredict = () => {
 
     return (
         <div className="image-page">
-            <button className="predict-button" onClick={() => document.getElementById("file-input").click()}>
+            <button className="predict-ibutton" onClick={() => document.getElementById("file-input").click()}>
                 Realizar predicciones
             </button>
             <input

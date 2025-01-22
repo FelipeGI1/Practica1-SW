@@ -1,4 +1,4 @@
-.image-page {
+.videos-page {
     margin-top: 52px; /* Altura de la navbar */
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     padding: 20px; /* Añade un poco de padding para separar el botón del borde */
 }
 
-.predict-ibutton {
+.predict-vbutton {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -19,30 +19,23 @@
     margin-bottom: 20px; /* Añade un margen inferior para separar el botón de los cuadros de texto */
 }
 
-.predict-ibutton:hover {
+.predict-vbutton:hover {
     background-color: #555;
 }
 
-.image-container {
+.video-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px; /* Añade un margen inferior para separar los cuadros de texto del botón */
 }
 
-.image-box {
+.video-box {
     flex: 1;
     margin-right: 20px;
     text-align: center;
 }
 
-.image-box h2 {
+.video-box h2 {
     margin-bottom: 10px;
-}
-
-.image-box img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
 }
