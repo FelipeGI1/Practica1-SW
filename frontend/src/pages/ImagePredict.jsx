@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/imagepredict.css";
+import Swal from "sweetalert2";
 
 const ImagePredict = () => {
     const [originalImage, setOriginalImage] = useState(null);
@@ -24,7 +25,10 @@ const ImagePredict = () => {
                         console.log("Respuesta del servidor:", res.data);
                         setOriginalImage(`http://127.0.0.1:5000${res.data.original_image}`);
                         setPredictedImage(`http://127.0.0.1:5000${res.data.predicted_image}`);
-                        alert(res.data.message);
+                        Swal.fire({
+                            title: "Predicción realizada",
+                            icon: "success",
+                        });
                     });
             } catch (error) {
                 console.error("Error al realizar la petición:", error);
