@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/videopredict.css";
-import { showSuccessAlert } from "../helpers/alertas";
+import { showSuccessAlert, showLoadingAlert } from "../helpers/alertas";
+import Swal from "sweetalert2";
 
 const VideoPredict = () => {
     const [originalVideo, setOriginalVideo] = useState(null);
@@ -13,6 +14,7 @@ const VideoPredict = () => {
             console.log("Archivo seleccionado:", file);
             const formData = new FormData();
             formData.append("file", file);
+            showLoadingAlert();
 
             try {
                 const response = await axios.post('http://localhost:5000/predict_video', formData, {
@@ -24,8 +26,10 @@ const VideoPredict = () => {
                 const data = response.data;
                 setOriginalVideo(`http://localhost:5000${data.original_video}`);
                 setPredictedVideo(`http://localhost:5000${data.predicted_video}`);
+                Swal.close();
                 showSuccessAlert("Predicción completada", "El video ha sido procesado exitosamente.");
             } catch (error) {
+                Swal.close();
                 console.error("Error al realizar la predicción:", error);
             }
         }
