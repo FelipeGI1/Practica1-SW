@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from predict_funct import predict_image, predict_video
+from ultralytics import YOLO
 import os
 import shutil
 
 app = Flask(__name__)
 CORS(app)
+
+model = YOLO("yolo11m-seg-custom.pt")
 
 UPLOAD_FOLDER = 'uploads'
 PREDICT_FOLDER = 'runs/segment/predict'
@@ -34,7 +37,7 @@ def predict():
         clear_upload_folder()
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
-        predict_image(file_path)
+        predict_image(model, file_path)
         predict_image_path = os.path.join(PREDICT_FOLDER, file.filename)
         return jsonify({
             'message': 'Prediction completed',
@@ -53,7 +56,7 @@ def predict_video_route():
         clear_upload_folder()
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
-        predict_video(file_path)
+        predict_video(model, file_path)
         predict_video_path = os.path.join("runs/segment/predict2", file.filename)
         return jsonify({
             'message': 'Prediction completed',
