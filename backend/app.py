@@ -4,9 +4,11 @@ from predict_funct import predict_image, predict_video
 from ultralytics import YOLO
 import os
 import shutil
+import threading
+import cv2
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 model = YOLO("yolo11m-seg-custom.pt")
 
@@ -14,6 +16,8 @@ UPLOAD_FOLDER = 'uploads'
 PREDICT_FOLDER = 'runs/segment/predict'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PREDICT_FOLDER, exist_ok=True)
+
+camera_thread = None
 
 def clear_upload_folder():
     for filename in os.listdir(UPLOAD_FOLDER):
@@ -25,6 +29,36 @@ def clear_upload_folder():
                 shutil.rmtree(file_path)
         except Exception as e:
             print(f'Failed to delete {file_path}. Reason: {e}')
+
+def run_camera_prediction(camera):
+    cap = cv2.VideoCapture(int(camera))  # Ensure camera is an integer
+    if not cap.isOpened():
+        print(f"Error: Could not open camera {camera}")
+        return
+
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if ret:
+            results = model(frame, conf=0.8)
+            annotated_frame = results[0].plot()
+            cv2.imshow('Predicción camara', annotated_frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        else:
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+
+@app.route('/predict_realtime', methods=['POST'])
+def predict_realtime():
+    global camera_thread
+    camera = request.json.get('camera')
+    if camera_thread is None or not camera_thread.is_alive():
+        camera_thread = threading.Thread(target=run_camera_prediction, args=(camera,))
+        camera_thread.start()
+        return jsonify({'message': 'Real-time prediction started'}), 200
+    else:
+        return jsonify({'error': 'Prediction already running'}), 400
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -61,7 +95,7 @@ def predict_video_route():
         return jsonify({
             'message': 'Prediction completed',
             'original_video': f'/uploads/{file.filename}',
-            'predicted_video': f'/runs/segment/predict2/{file.filename}'
+            'predicted_video': f'/runs/segment/predict/{file.filename}'
         }), 200
 
 @app.route('/runs/segment/predict2/<filename>')

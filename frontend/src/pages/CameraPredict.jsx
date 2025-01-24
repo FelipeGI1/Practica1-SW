@@ -1,46 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "../styles/camerapredict.css";
 
 const CameraPredict = () => {
-    const [selectedCamera, setSelectedCamera] = useState("");
-    const [cameras, setCameras] = useState([]);
+  const [camera, setCamera] = useState("0");
 
-    useEffect(() => {
-        const getCameras = async () => {
-            try {
-                // Solicitar permisos para acceder a la cámara sin iniciar la cámara
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                stream.getTracks().forEach(track => track.stop());
+  const startPrediction = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/predict_realtime", { camera });
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error starting prediction:", error.response.data.error);
+    }
+  };
 
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                const videoDevices = devices.filter(device => device.kind === 'videoinput');
-                setCameras(videoDevices);
-            } catch (err) {
-                console.error("Error accessing media devices.", err);
-            }
-        };
-
-        getCameras();
-    }, []);
-
-    const handleCameraChange = (event) => {
-        setSelectedCamera(event.target.value);
-    };
-
-    return (
-        <div className="monitoring-page">
-            <button onClick={() => {}}>Iniciar cámara</button>
-            <select value={selectedCamera} onChange={handleCameraChange}>
-                <option value="" disabled>Seleccione una cámara</option>
-                {cameras.map((camera, index) => (
-                    <option key={camera.deviceId} value={camera.deviceId}>
-                        {camera.label || `Cámara ${index + 1}`}
-                    </option>
-                ))}
-            </select>
-        </div>
-    );
-}
+  return (
+    <div className="camera-predict-container">
+      <select value={camera} onChange={(e) => setCamera(e.target.value)}>
+        <option value="0">Camara1</option>
+        <option value="1">Camara2</option>
+      </select>
+      <button onClick={startPrediction}>Iniciar Predicción</button>
+      <p className="exit-instruction">Para salirse de la ventana presione la tecla 'q'</p>
+    </div>
+  );
+};
 
 export default CameraPredict;

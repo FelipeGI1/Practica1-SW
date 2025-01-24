@@ -1,13 +1,21 @@
-.monitoring-page {
-    margin-top: 52px; /* Altura de la navbar */
+.camera-predict-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido horizontalmente */
-    height: calc(100vh - 52px); /* Altura total menos la altura de la navbar */
-    padding: 20px; /* Añade un poco de padding para separar el botón del borde */
-}
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 52px);
+    margin-top: 52px;
+  }
+  
+  .camera-predict-container select,
+  .camera-predict-container button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
 
-.monitoring-page button,
-.monitoring-page select {
-    margin: 10px 0;
-}
+  .exit-instruction {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
